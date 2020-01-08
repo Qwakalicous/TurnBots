@@ -1,0 +1,36 @@
+
+#TurnBots
+
+##Goal
+Train units that can make strategic decisions on where to move depending on the
+positions of nearby enemies and food.
+
+
+##Description
+
+###Environment
+The environment is made up by squares (tiles) in a large grid. In each tile there
+can be either an enemy or a piece of food. The boarder tiles will either kill the
+unit if stepped on or just harm them.
+
+
+###Movement and sight
+Every unit can only see the surrounding 8 tiles and these (+its hunger and health)
+are the inputs for the neural network (10 inputs in total). A unit can only move to
+one of the 4 closest tiles (up, down, left, right) and this is the output of the
+neural network. The decision of where to move is made by the units brain.
+
+
+###Attacks
+If a unit chooses to move to a squre occupied by an enemy the unit with the most
+health will survive and the attacking unit will lose an amount of health depending
+on how much health the opponent had [attack_damage].
+
+
+###Food and health
+Per turn each every unit looses some amount of hunger (100 hunger means full and 0
+means starving). If the units hunger is less than [starvation_limit] the units will
+lose [starvation_damage] amount of health that turn.
+
+If [hunger] is [max_hunger] the unit will gain [health_increase] that turn. However,
+
